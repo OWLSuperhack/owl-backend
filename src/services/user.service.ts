@@ -1,11 +1,15 @@
 import boom from '@hapi/boom';
-import { UserAttributes } from '../db/models/user.model';
 import sequelize from '../libs/sequelize';
-import { Op } from 'sequelize';
 import LoggerInstance from '../utils/logger';
+import LocationService from './location.service';
 
 export default class UserService {
-    constructor() {}
+
+    private locationService : LocationService
+
+    constructor() {
+        this.locationService = new LocationService();
+    }
 
     public async getUserById(userId: string) {
         try {
@@ -26,7 +30,7 @@ export default class UserService {
 
         } catch (error) {
             LoggerInstance.error('%s', error);
-            return {error};
+            throw error;
         }
     }
 
@@ -49,7 +53,7 @@ export default class UserService {
 
         } catch (error) {
             LoggerInstance.error('%s', error);
-            return {error};
+            throw error;
         }
     }
 
@@ -72,7 +76,24 @@ export default class UserService {
 
         } catch (error) {
             LoggerInstance.error('%s', error);
-            return {error};
+            throw error;
+        }
+    }
+
+    public async createUser(telegramId: string, address: string) {
+        try {
+            const location = await this.locationService.getLocationById(1);
+            const user = {
+                telegramId,
+                address,
+                currentLocation: location.dataValues.name,
+                currentMessageIndex: 0,
+            };
+            const newUser = await sequelize.models.User.create(user);
+            return newUser;
+        } catch (error) {
+            LoggerInstance.error('%s', error);
+            throw error;
         }
     }
 

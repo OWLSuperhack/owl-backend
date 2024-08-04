@@ -20,7 +20,7 @@ const MessageSchema = {
   },
   locationId: {
     field: 'location_id',
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: LOCATION_TABLE,
