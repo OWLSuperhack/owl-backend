@@ -1,0 +1,16 @@
+export const locations = [
+    { location_name: 'Val\'s Room', description: 'Game start' },
+    { location_name: 'Inside the house', description: 'Living room and its rooms' },
+    { location_name: 'Dad\'s Room', description: '' },
+    { location_name: 'Kitchen', description: '' },
+    { location_name: 'Living Room', description: '' },
+    { location_name: 'Carpentry Workshop', description: '' },
+    { location_name: 'Territory between Val\'s house and Mipha\'s castle', description: 'Where you see the museum, the fountain, and the library' },
+    { location_name: 'Mipha\'s Castle', description: '' },
+    { location_name: 'Throne Room', description: '' },
+    { location_name: 'Secret Room', description: '' },
+    { location_name: 'Forest of Souls', description: 'World coin side quest' },
+    { location_name: 'Fountain', description: '' },
+    { location_name: 'Museum', description: '' },
+    { location_name: 'Library', description: '' },
+];
