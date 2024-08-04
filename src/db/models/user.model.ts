@@ -22,10 +22,12 @@ const UserSchema = {
     telegramId: {
         field: 'telegram_id',
         allowNull: false,
+        unique: true,
         type: DataTypes.STRING,
     },
     address: {
         allowNull: false,
+        unique: true,
         type: DataTypes.STRING,
     },
     currentLocation: {

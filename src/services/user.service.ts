@@ -86,7 +86,7 @@ export default class UserService {
             const user = {
                 telegramId,
                 address,
-                currentLocation: location.dataValues.name,
+                currentLocation: location.dataValues.locationName,
                 currentMessageIndex: 0,
             };
             const newUser = await sequelize.models.User.create(user);
