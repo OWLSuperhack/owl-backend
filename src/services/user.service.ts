@@ -68,11 +68,8 @@ export default class UserService {
                     }
                 ]
             });
-            if (!userRecord) {
-                throw boom.notFound('User not found');
-            }
         
-            return userRecord;
+            return userRecord ? userRecord : null;
 
         } catch (error) {
             LoggerInstance.error('%s', error);
@@ -82,6 +79,11 @@ export default class UserService {
 
     public async createUser(telegramId: string, address: string) {
         try {
+            const previousUser = await this.getUserByTelegramId(telegramId);
+            if (previousUser) {
+                LoggerInstance.error('%s', boom.conflict('User already exists'));
+                return;
+            }
             const location = await this.locationService.getLocationById(1);
             const user = {
                 telegramId,

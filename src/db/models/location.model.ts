@@ -3,7 +3,7 @@ import { Model, DataTypes, Sequelize } from 'sequelize';
 const LOCATION_TABLE = 'locations';
 
 interface LocationAttributes {
-  id: string;
+  id: number;
   locationName: string;
   description?: string;
 }
@@ -28,7 +28,7 @@ const LocationSchema = {
 
 class Location extends Model<LocationAttributes> {
 
-  public id!: string;
+  public id!: number;
   public locationName!: string;
   public description!: string;
 
