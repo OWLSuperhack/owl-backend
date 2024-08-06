@@ -31,7 +31,7 @@ export default class LocationService {
     public async getUserByName(name: string) {
         try {
             const locationRecord = await sequelize.models.Location.findOne({
-                where: { name },
+                where: { locationName: name },
                 include: [
                     {
                         model: sequelize.models.Message,
