@@ -68,11 +68,8 @@ export default class UserService {
                     }
                 ]
             });
-            if (!userRecord) {
-                throw boom.notFound('User not found');
-            }
         
-            return userRecord;
+            return userRecord ? userRecord : null;
 
         } catch (error) {
             LoggerInstance.error('%s', error);

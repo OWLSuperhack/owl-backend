@@ -29,6 +29,10 @@ const MessageSchema = {
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
   },
+  command: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   messageIndex: {
     field: 'message_index',
     type: DataTypes.INTEGER,
@@ -42,6 +46,15 @@ const MessageSchema = {
   nextLocations: {
     field: 'next_locations',
     type: DataTypes.STRING,
+  },
+  nextLevel: {
+    field: 'next_level',
+    type: DataTypes.BOOLEAN,
+  },
+  output: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    allowNull: true,
+    defaultValue: [],
   },
 };
 
