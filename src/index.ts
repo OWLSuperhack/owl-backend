@@ -5,7 +5,7 @@ import routes from './routes';
 import cors from 'cors';
 import passport from 'passport';
 import JwtStrategy from './utils/auth/strategies/jwt.strategy';
-import { StartBot } from './telegramBot/botService';
+import { StartBotMessageReceptor } from './telegramBot/messageReceptor';
 
 passport.use(JwtStrategy);
 
@@ -27,7 +27,7 @@ app.use(ormErrorHandler)
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-StartBot();
+StartBotMessageReceptor();
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
