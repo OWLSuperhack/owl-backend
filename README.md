@@ -1,5 +1,7 @@
 # Project Readme
 
+![photo_2024-08-04_13-42-00](https://github.com/user-attachments/assets/0b8c2e6d-8028-4e5b-ab61-a9485adf1af8)
+
 ## Project Setup for Development
 
 This README provides detailed instructions to set up and run the project in a development environment.
