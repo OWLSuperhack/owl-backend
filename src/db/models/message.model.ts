@@ -5,10 +5,13 @@ const MESSAGE_TABLE = 'messages';
 
 interface MessageAttributes {
   id: string;
-  locationId: string;
+  locationId: number;
   messageIndex: number;
   messageText: string;
   nextLocations?: string;
+  nextLevel?: boolean;
+  output?: string[];
+  command?: string;
 }
 
 const MessageSchema = {
@@ -31,7 +34,7 @@ const MessageSchema = {
   },
   command: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   messageIndex: {
     field: 'message_index',
@@ -50,6 +53,7 @@ const MessageSchema = {
   nextLevel: {
     field: 'next_level',
     type: DataTypes.BOOLEAN,
+    defaultValue: false,
   },
   output: {
     type: DataTypes.ARRAY(DataTypes.STRING),
@@ -62,6 +66,9 @@ class Message extends Model<MessageAttributes> {
 
   public id!: string;
   public locationId!: string;
+  public command!: string;
+  public nextLevel!: boolean;
+  public output!: string[];
   public messageIndex!: number;
   public messageText!: string;
   public nextLocations!: string;

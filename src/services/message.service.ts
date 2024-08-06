@@ -48,4 +48,30 @@ export default class MessageService {
         }
     }
 
+    public async getCurrentProgrress(telegramId: string) {
+        try {
+            const userRecord = await this.userService.getUserByTelegramId(telegramId);
+
+            if (!userRecord) {
+                throw boom.notFound('User not found, not progress fetched');
+            }
+
+            const location = await this.locationService.getUserByName(userRecord.dataValues.currentLocation);
+
+            const currentMessage = await sequelize.models.Message.findOne({
+                where: {
+                    locationId: location.dataValues.id,
+                    messageIndex: userRecord.dataValues.currentMessageIndex,
+                    nextLevel: true
+                }
+            });
+
+            return currentMessage ? currentMessage : null;
+
+        } catch (error) {
+            LoggerInstance.error('%s', error);
+            throw error;
+        }
+    }
+
 }
