@@ -29,11 +29,30 @@ export function StartBotMessageReceptor() {
     const chatId = msg.chat.id
     processCommand('/start', chatId.toString(), bot)
   })
-  bot.onText(/\/test/, async (msg) => {
+  bot.onText(/\/a1/, async (msg) => {
     const chatId = msg.chat.id
-    processCommand('/test', chatId.toString(), bot)
+    processCommand('/a1', chatId.toString(), bot)
   })
-
+  bot.onText(/\/a2/, async (msg) => {
+    const chatId = msg.chat.id
+    processCommand('/a2', chatId.toString(), bot)
+  })
+  bot.onText(/\/a3/, async (msg) => {
+    const chatId = msg.chat.id
+    processCommand('/a3', chatId.toString(), bot)
+  })
+  bot.onText(/\/b1/, async (msg) => {
+    const chatId = msg.chat.id
+    processCommand('/b1', chatId.toString(), bot)
+  })
+  bot.onText(/\/b2/, async (msg) => {
+    const chatId = msg.chat.id
+    processCommand('/b2', chatId.toString(), bot)
+  })
+  bot.onText(/\/b3/, async (msg) => {
+    const chatId = msg.chat.id
+    processCommand('/b3', chatId.toString(), bot)
+  })
   bot.onText(/\/newAddress/, async (msg) => {
     try {
       const chatId = msg.chat.id
@@ -62,6 +81,7 @@ export function StartBotMessageReceptor() {
   bot.on('message', async (msg) => {
     try {
       if (msg.text && msg.text.startsWith('/')) {
+        processCommand(msg.text, msg.chat.id.toString(), bot)
         return
       }
       const chatId = msg.chat.id
@@ -94,7 +114,7 @@ export function StartBotMessageReceptor() {
         )
         console.log(`response for ${command} is :`, response?.dataValues)
         if (response) {
-          if (response.dataValues.output.length > 0) {
+          if (response.dataValues.output && response.dataValues.output.length > 0) {
             botService.processMultipleOutput(
               response.dataValues.output,
               bot,

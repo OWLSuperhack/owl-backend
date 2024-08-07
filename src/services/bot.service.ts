@@ -51,7 +51,12 @@ export default class BotService {
     bot: TelegramBot,
     chatId: string
   ) {
+    let directMessage = ''
     try {
+      if (action.includes('*')) {
+        directMessage = action.split('*')[1]
+        action = action.split('*')[0]
+      }
       switch (action) {
         case '/sendAudio1':
           await this.sendAudio(1, chatId, bot)
@@ -67,6 +72,21 @@ export default class BotService {
           break
         case '/sendMapValRoom':
           await this.sendImage('mapVal', 'Room', chatId, bot)
+          break
+        case '/sendImageWorkshopEmpty':
+          await this.sendImage('workshop', 'Empty', chatId, bot)
+          break
+        case '/sendImageKitchen':
+          await this.sendImage('kitch', 'en', chatId, bot)
+          break
+        case '/sendMapDownstairs':
+          await this.sendImage('map', 'Downstairs', chatId, bot)
+          break
+        case '/sendImageDadRoom':
+          await this.sendImage('dad', 'Room', chatId, bot)
+          break
+        case '/send':
+          await bot.sendMessage(chatId, directMessage)
           break
         default:
           break
@@ -94,7 +114,7 @@ export default class BotService {
   ) {
     try {
       const imagePath = getImagePath(`${prefix}${index}.${imageFormat}`)
-      await bot.sendPhoto(chatId, fs.createReadStream(imagePath),{
+      await bot.sendPhoto(chatId, fs.createReadStream(imagePath), {
         caption: `${prefix} ${index}`,
       })
     } catch (error) {

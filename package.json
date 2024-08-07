@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/OWLSuperhack/owl-backend#readme",
   "dependencies": {
+    "@ethereum-attestation-service/eas-sdk": "^2.5.0",
     "@hapi/boom": "^10.0.1",
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
