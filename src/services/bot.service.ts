@@ -52,6 +52,11 @@ export default class BotService {
     chatId: string
   ) {
     try {
+      let messageError = ''
+      if (action.includes('*')) {
+        action = action.split('*')[0]
+        messageError = action.split('*')[1]
+      }
       switch (action) {
         case '/sendAudio1':
           await this.sendAudio(1, chatId, bot)
@@ -66,7 +71,21 @@ export default class BotService {
           await this.sendImage('imageVal', '1', chatId, bot)
           break
         case '/sendMapValRoom':
+          await bot.sendMessage(chatId, generalMessages['sendMapValRoom']) //TODO change to new logic
           await this.sendImage('mapVal', 'Room', chatId, bot)
+          break
+        case '/sendImageWorkshopEmpty':
+          await this.sendImage('workshop', 'Empty', chatId, bot)
+          break
+        case '/sendImageKitchen':
+          await this.sendImage('kitch', 'en', chatId, bot)
+          break
+        case '/sendMapDownstairs':
+          await bot.sendMessage(chatId, generalMessages['sendMapDownstairs']) //TODO change to new logic
+          await this.sendImage('map', 'Downstairs', chatId, bot)
+          break
+        case '/error':
+          await bot.sendMessage(chatId, messageError)
           break
         default:
           break
@@ -94,7 +113,7 @@ export default class BotService {
   ) {
     try {
       const imagePath = getImagePath(`${prefix}${index}.${imageFormat}`)
-      await bot.sendPhoto(chatId, fs.createReadStream(imagePath),{
+      await bot.sendPhoto(chatId, fs.createReadStream(imagePath), {
         caption: `${prefix} ${index}`,
       })
     } catch (error) {
