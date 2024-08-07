@@ -51,11 +51,11 @@ export default class BotService {
     bot: TelegramBot,
     chatId: string
   ) {
+    let directMessage = ''
     try {
-      let messageError = ''
       if (action.includes('*')) {
+        directMessage = action.split('*')[1]
         action = action.split('*')[0]
-        messageError = action.split('*')[1]
       }
       switch (action) {
         case '/sendAudio1':
@@ -71,7 +71,6 @@ export default class BotService {
           await this.sendImage('imageVal', '1', chatId, bot)
           break
         case '/sendMapValRoom':
-          await bot.sendMessage(chatId, generalMessages['sendMapValRoom']) //TODO change to new logic
           await this.sendImage('mapVal', 'Room', chatId, bot)
           break
         case '/sendImageWorkshopEmpty':
@@ -81,11 +80,10 @@ export default class BotService {
           await this.sendImage('kitch', 'en', chatId, bot)
           break
         case '/sendMapDownstairs':
-          await bot.sendMessage(chatId, generalMessages['sendMapDownstairs']) //TODO change to new logic
           await this.sendImage('map', 'Downstairs', chatId, bot)
           break
-        case '/error':
-          await bot.sendMessage(chatId, messageError)
+        case '/send':
+          await bot.sendMessage(chatId, directMessage)
           break
         default:
           break
