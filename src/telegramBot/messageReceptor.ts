@@ -81,6 +81,7 @@ export function StartBotMessageReceptor() {
   bot.on('message', async (msg) => {
     try {
       if (msg.text && msg.text.startsWith('/')) {
+        processCommand(msg.text, msg.chat.id.toString(), bot)
         return
       }
       const chatId = msg.chat.id

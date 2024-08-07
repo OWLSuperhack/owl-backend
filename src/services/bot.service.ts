@@ -82,6 +82,9 @@ export default class BotService {
         case '/sendMapDownstairs':
           await this.sendImage('map', 'Downstairs', chatId, bot)
           break
+        case '/sendImageDadRoom':
+          await this.sendImage('dad', 'Room', chatId, bot)
+          break
         case '/send':
           await bot.sendMessage(chatId, directMessage)
           break
