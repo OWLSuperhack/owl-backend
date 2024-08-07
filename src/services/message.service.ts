@@ -33,6 +33,15 @@ export default class MessageService {
                 }
             });
 
+            if (!currentMessage) {
+                const errorMessage = await sequelize.models.Message.findOne({
+                    where: {
+                        command: '/error'
+                    }
+                });
+                return errorMessage;
+            }
+
             if (currentMessage && currentMessage.dataValues.nextLevel) {
                 await userRecord.update({
                     currentMessageIndex: userRecord.dataValues.currentMessageIndex + 1,
@@ -40,7 +49,7 @@ export default class MessageService {
                 });
             }
 
-            return currentMessage ? currentMessage : null;
+            return currentMessage;
 
         } catch (error) {
             LoggerInstance.error('%s', error);

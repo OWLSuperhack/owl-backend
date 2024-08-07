@@ -7,7 +7,6 @@ interface MessageAttributes {
   id: string;
   locationId: number;
   messageIndex: number;
-  messageText: string;
   nextLocations?: string;
   nextLevel?: boolean;
   output?: string[];
@@ -41,11 +40,6 @@ const MessageSchema = {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  messageText: {
-    field: 'message_text',
-    type: DataTypes.TEXT,
-    allowNull: false,
-  },
   nextLocations: {
     field: 'next_locations',
     type: DataTypes.STRING,
@@ -56,7 +50,7 @@ const MessageSchema = {
     defaultValue: false,
   },
   output: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
+    type: DataTypes.ARRAY(DataTypes.TEXT),
     allowNull: true,
     defaultValue: [],
   },
@@ -70,7 +64,6 @@ class Message extends Model<MessageAttributes> {
   public nextLevel!: boolean;
   public output!: string[];
   public messageIndex!: number;
-  public messageText!: string;
   public nextLocations!: string;
 
   static associate(models: any) {
