@@ -4,6 +4,8 @@ export const generalMessages = {
   intro:
     'Cuando termines de ver y seguir las instrucciones, escribe y envía /newAddress seguido de tu nueva dirección de billetera.',
   startMsg: '¡Perfecto! ahora envía tu primer comando y escribe: /start',
+  sendMapValRoom: '¿Qué quieres hacer?',
+  sendMapDownstairs: 'Voy a buscar a papá. Debe estar en la sala.',
   error: {
     errorGeneric: 'Error, por favor intenta de nuevo más tarde.',
     errorIntro:
