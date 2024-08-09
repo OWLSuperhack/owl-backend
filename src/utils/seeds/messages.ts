@@ -344,7 +344,9 @@ export const messagesValRoom = [
         next_level: false, //next_level: true,
         //next_locations: 'Library',  
         output: [
-            '/send*Me encanta el olor a libros de la biblioteca. Aparte queda más cerca, vamos para allá.',
+            //'/send*Me encanta el olor a libros de la biblioteca. Aparte queda más cerca, vamos para allá.',
+            '/send*Me encanta el olor a libros de la biblioteca. Quizás pueda ir para allá mas tarde.',
+
         ],
         command: '/a3',
     },
@@ -355,7 +357,8 @@ export const messagesValRoom = [
         next_level: false, //next_level: true,
         //next_locations: 'Fountain',  
         output: [
-            '/send*Recuerdo que cerca a mi casa hay una vieja fuente abandonada. Puedo empezar a mirar ahí. Ojalá no haya nadie...',
+            //'/send*Recuerdo que cerca a mi casa hay una vieja fuente abandonada. Puedo empezar a mirar ahí. Ojalá no haya nadie...',
+            '/send*Recuerdo que cerca a mi casa hay una vieja fuente abandonada. Tal vez pueda ir despues allá.',
         ],
         command: '/b1',
     },
@@ -386,8 +389,47 @@ export const messagesValRoom = [
             '/send*Val: ¿lo reconoces?',
             '/send*Curador: Val, ¿no has notado que este collar y las marcas de esta fuente coinciden? Mira más de cerca.',
             '/send*Te acercas y notas cómo el pendiente ilumina las piezas quebradas en tres colores distintos al rededor de la fuente.',
-            '/sendImageFountain1'
+            '/sendImageFountain1',
+            `/send*Usa /answer para interactuar con la fuente.` 
         ],
         command: '/a2',
-    },    
+    },
+    {
+        id: uuidv4(),
+        location_id: 13, 
+        message_index: 8, 
+        next_level: false,
+        output: [
+            '/answerMuseum',
+        ],
+        command: '/answer',
+    },
+    {
+        id: uuidv4(),
+        location_id: 13, 
+        message_index: 9, 
+        next_level: true,
+        next_locations: 'Mipha\'s Castle',
+        output: [
+            '/sendAudio8',
+            '/send*Curador: ¡Espectacular! ¡Mira lo que lograste! ¡La fuente está viva de nuevo!',
+            '/send*Val: Me pregunto qué dice ... ',
+            '/resultMuseum',
+            'Val: Es hora de volver al castillo',
+            '/send*Usa /back para regresar al castillo.'
+        ],
+        command: '/attestation',
+    },
+    {
+        id: uuidv4(),
+        location_id: 8, 
+        message_index: 10, 
+        next_level: false,
+        output: [
+            '/sendImageMipha2',
+            '/sendAudio9',
+            '/collectNft',
+        ],
+        command: '/back',
+    },
 ];
