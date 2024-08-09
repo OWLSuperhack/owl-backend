@@ -18,15 +18,19 @@ No olvidar subir el link del demo
 
 Agregar link a: View demo, report bug, request feature.
 
+https://i.ibb.co/3SfFDtB/photo-2024-08-04-13-42-00.jpg
+
+https://i.ibb.co/DL6z21c/2.png
+
  -->
 
 <br />
 <div align="center">
   <a href="https://github.com/OWLSuperhack/owl-backend">
-    <img src="https://i.ibb.co/3SfFDtB/photo-2024-08-04-13-42-00.jpg">
+    <img src="https://i.ibb.co/nk2NBjF/Banner-para-Twitch-Gamer-Streaming-Atrevido-Lila.png">
   </a>
 
- <h3 align="center">  🦉Agregar aquí una short description🦉</h3>
+ <h3 align="center">🦉On-chain open world game to explore and learn through a creative storyline.🦉</h3>
 
   <p align="center">
 
@@ -69,11 +73,16 @@ Agregar link a: View demo, report bug, request feature.
 <br />
 
 
-<!-- ![OWL](Agregar aquí una imagen) -->
+![OWL](https://i.ibb.co/0Zkb3fc/Learn-On-Chain.jpg)
 
-OWL (Open World of Learning), an innovative RPG that uses an Open World concept to teach a wide range of subjects. 
 
-Players will seamlessly interact with on-chain elements without even realizing it, making learning engaging and subtly introducing them to web3 technologies.
+OWL(Open World of Learning) is an innovative on-chain open-world game where players can explore and learn virtually any subject through a creative, immersive storyline. 
+
+Designed to spark curiosity, OWL allows players to navigate the game at their own pace, making intuitive connections between concepts that enhance long-term memory. 
+
+The learning experience is enriched with interactive elements delivered through a Telegram bot, combining narrative and multimedia to ensure a high-quality educational journey. 
+
+One of OWL’s unique features is that the main storyline remains flexible, unaffected by the order in which players choose to learn, with on-chain interactions seamlessly integrated into the gameplay, offering a true blend of education and adventure.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -86,10 +95,11 @@ Players will seamlessly interact with on-chain elements without even realizing i
 
 [![Demo Video](https://i.ibb.co/48PGvQk/Pocket-Youtube-Final.png)](https://www.youtube.com/watch?v=74cyIjHnwyc)
 
-Run Pocket Demo here: https://pocketapp.my.canva.site/main -->
+ -->
+ 
+Ready to explore? Chat with OWL Bot: https://t.me/OwlSuperHackBot
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p> 
-
 
 
 <!-- GETTING STARTED   -->
@@ -97,24 +107,26 @@ Run Pocket Demo here: https://pocketapp.my.canva.site/main -->
 
 # How it Works
 
-<!-- Toca mejorar esto  -->
+Game’s architecture integrates several key components to create a seamless and engaging experience for players.
 
-A game on chain in an open world style where you could learn virtually any subject through a creative storyline. 
+## Core Components
 
-The idea is for the players to be curious enough to go from one part of the game to another, at their own pace and through their own intuition in order to make better connections between concepts and thus make a more positive impact in their long term memory. 
+- **Telegram Bot:** The primary interface for players, where commands and interactions take place. It also verifies new wallets and manages on-chain attestations as players progress, ensuring a smooth integration with the blockchain.
+- **On-Chain Interactions:** OWL utilizes blockchain technology, specifically Base and Worldcoin, to offer seamless on-chain experiences. Players start by creating a new wallet, validated by the bot. As they advance in the storyline, they earn attestations on Base and unlock dynamic NFTs that evolve based on their progress.
+- **Dynamic NFTs:** Players are rewarded with dynamic NFTs as they achieve milestones in the game. These NFTs grow and change based on the attestations collected, serving as a visual representation of the player’s journey and accomplishments.
+- **Story-Driven Learning:** The game features a branching narrative that adapts to the player’s choices, allowing for a non-linear learning experience. The flexible storyline ensures that the order in which subjects are learned does not impact the overall experience, making each journey unique.
+- **Integration with World ID:** A side quest involves registering with World ID, which lays the foundation for unique user validation and future access to basic income rewards within the game.
 
-All of this results in a higher quality learning experience where the best part is that the main story line is not affected by the order in which you choose to learn and you have on chain interactions without even knowing it.
+## User Journey
 
+- **Initial Setup:** Players begin by watching a video that guides them to create an EOA wallet (e.g., Metamask or Zerion), which becomes their digital identity in the game.
+- **First Command:** After setting up the wallet, players send their first command to begin their journey in the OWL universe.
+- **Story Progression:** Players navigate through the storyline, making choices that affect their path. The game adapts to these choices, ensuring a personalized learning experience, while unlocking on-chain interactions.
+- **Attestations and Rewards:** As players complete levels and milestones, they earn attestations and unlock dynamic NFTs or badges that reflect their progress and achievements.
+- **Side Quests:** Players can engage in side quests, such as registering with World ID, to explore additional aspects of the game and gain access to unique rewards.
 
-### Goals
+Overall, OWL delivers an educational experience that is both engaging and immersive, with a strong emphasis on intuitive learning and the seamless integration of blockchain technology.
 
-
-
-### Components
-
-
-
-### User Journey
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -125,18 +137,12 @@ All of this results in a higher quality learning experience where the best part 
 OWL is proudly supported by the following sponsors:
 
 
-<!-- Toca mejorar esto  
-* [![Gnosis Pay][gnosispay.com]][gnosispay-url]
-* [![Safe][safe.global]][safe-url]
-* [![Uniswap][uniswap.org]][uniswap-url]
-* [![Panceswap][pancakeswap.finance]][pancakeswap-url]
-* [![Morpho][morpho.org]][morpho-url]
-* [![Nouns][nouns.wtf]][nouns-url]
+* [![EAS Base][base.easscan]][easscan-url]
+* [![Base][base.org]][base-url]
+* [![Worldcoin][worldcoin.org]][worldcoin-url]
+* [![Blockscout][blockscout.com]][blockscout-url]
 
-
-These powerful partners have helped us create a seamless user experience and ensure the scalability and reliability of our project.
-
--->
+These powerful partnershave enabled us to integrate cutting-edge technology, ensuring that OWL provides a truly innovative and engaging experience for all users.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -236,122 +242,31 @@ By following these steps, you should be able to set up and run the project in a 
 
 
 
-
 <!-- MARKDOWN LINKS -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/EthPocketHQ/Pocket.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/OWLSuperhack/owl-backend.svg?style=for-the-badge&color=187f77
 
 [contributors-url]: https://github.com/OWLSuperhack/owl-backend/graphs/contributors
 
-[stars-shield]: https://img.shields.io/github/stars/EthPocketHQ/Pocket.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/OWLSuperhack/owl-backend.svg?style=for-the-badge&color=white
 
 [stars-url]: https://github.com/OWLSuperhack/owl-backend/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/EthPocketHQ/Pocket.svg?style=for-the-badge&logoColor=white
+[issues-shield]: https://img.shields.io/github/issues/OWLSuperhack/owl-backend.svg?style=for-the-badge&color=187f77
 
 [issues-url]: https://github.com/OWLSuperhack/owl-backend/issues
 
 
-<!-- SPONSORS
+<!-- SPONSORS  -->
 
+[base.easscan]: https://img.shields.io/badge/Base%20EAS-4c63b6?style=for-the-badge&logo=gnosispay&logoColor=white
+[easscan-url]:https://base.easscan.org/
 
-[gnosispay.com]:https://img.shields.io/badge/gnosispay-6FAEF6?style=for-the-badge&logo=gnosispay&logoColor=white
-[gnosispay-url]:https://gnosispay.com
+[base.org]:https://img.shields.io/badge/base-1953ef?style=for-the-badge&logo=gnosispay&logoColor=white
+[base-url]:https://www.base.org/
 
-[safe.global]:https://img.shields.io/badge/safe-6FAEF6?style=for-the-badge&logo=safe&logoColor=white
-[safe-url]:https://safe.global
+[worldcoin.org]:https://img.shields.io/badge/Worldcoin-fd0320?style=for-the-badge&logo=gnosispay&logoColor=white
+[worldcoin-url]:https://worldcoin.org/
 
-[uniswap.org]:https://img.shields.io/badge/uniswap-6FAEF6?style=for-the-badge&logo=uniswap&logoColor=white
-[uniswap-url]:https://uniswap.org
-
-[pancakeswap.finance]:https://img.shields.io/badge/pancakeswap-6FAEF6?style=for-the-badge&logo=pancakeswap&logoColor=white
-[pancakeswap-url]:https://pancakeswap.finance
-
-[morpho.org]:https://img.shields.io/badge/morpho-6FAEF6?style=for-the-badge&logo=morpho&logoColor=white
-[morpho-url]:https://morpho.org/
-
-[nouns.wtf]:https://img.shields.io/badge/nounsdao-6FAEF6?style=for-the-badge&logo=nounsdao&logoColor=white
-[Nouns-url]:https://nouns.wtf
-
- -->
-
-
-
-
-<!-- 
-
-
-# Project Readme
-
-![photo_2024-08-04_13-42-00](https://github.com/user-attachments/assets/0b8c2e6d-8028-4e5b-ab61-a9485adf1af8)
-
-## Project Setup for Development
-
-This README provides detailed instructions to set up and run the project in a development environment.
-
-### Prerequisites
-
-- Ensure Docker is installed and running on your machine.
-- Node.js and npm should be installed.
-- Ensure you have Nodemon installed globally.
-
-### Steps to Set Up the Project
-
-1. **Start Docker**
-
-   Make sure Docker is running. Use the following command to start the Docker containers (use sudo if needed):
-   ```sh
-   docker compose -f ./docker-compose-dev.yml up -d
-
-2. **Install Node Modules (Only first time)**
-
-   Install the required Node modules by running:
-
-   ```sh
-   npm install
-
-3. **Run Migrations (Only first time)**
-
-   To set up the database schema, run the migrations:
-
-   ```sh
-   npm run migrations:run
-
-4. **Install Nodemon (if not installed)**
-
-   Nodemon is used for automatically restarting the server. Install it globally if you haven't already:
-
-   ```sh
-   npm install -g nodemon
-
-5. **Run the Server**
-
-   Start the development server with:
-
-   ```sh
-   npm run dev
-
-### Environment Variables
-
-Create a `.env` file in the root directory of the project. Use the `example.env` file as a guide to set up your environment variables.
-
-### Database Backup
-
-If you have a backup or a previous database to use, place it inside a folder named `postgres` at the root of the project directory. Ensure all the database files are directly inside this folder without any extra subfolders.
-
-### Stack Specifications
-
-- **Node.js**: The runtime environment for executing JavaScript on the server side.
-- **Express**: A minimal and flexible Node.js web application framework.
-- **TypeScript**: A strongly typed programming language that builds on JavaScript.
-- **PostgreSQL**: The relational database management system used.
-- **Sequelize**: A promise-based Node.js ORM for PostgreSQL.
-
-### Additional Notes
-
-- Make sure Docker is running before executing any Docker commands.
-- The `.env` file is crucial for configuration. Double-check the variables set in this file.
-- Follow the folder structure guidelines for database backups to ensure proper loading.
-
-By following these steps, you should be able to set up and run the project in a development environment successfully.
--->
+[blockscout.com]:https://img.shields.io/badge/Blockscout-5453d3?style=for-the-badge&logo=gnosispay&logoColor=white
+[blockscout-url]:https://www.blockscout.com/
