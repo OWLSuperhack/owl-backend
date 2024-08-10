@@ -5,18 +5,16 @@ import { ProvideBase } from '../utils/ipfs/IpfsBase'
 
 type Props = {
   to: string
-  cid: string
   id: string
   index: number
   location: string
-  address: string
   data: string
 }
 
 const ipfsService = new IPFSService()
 
 export default class NFTService {
-  public async mintNFT({ to, id, index, location, address, data }: Props) {
+  public async mintNFT({ to, id, index, location, data }: Props) {
     try {
       const rpc = process.env.RPC_URL
       const pk = process.env.PK
@@ -30,10 +28,9 @@ export default class NFTService {
         id,
         index,
         location,
-        address,
+        to,
         data
       )
-      console.log('ipfsBody:', ipfsBody);
       const cid = await ipfsService.uploadIPFs(ipfsBody)
       console.log('cid is:', cid);
       const provider = new ethers.JsonRpcProvider(rpc)

@@ -185,6 +185,7 @@ export function ProvideBase(
       ]
       break
   }
+  return body
 }
 function ProvideImage(index: number) {
   switch (index) {
