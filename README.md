@@ -155,7 +155,7 @@ These powerful partnershave enabled us to integrate cutting-edge technology, ens
 Natalia Emma Carvajal ([@nataliaemmaC](https://twitter.com/nataliaemmaC)): OWL Founder
 <br />
 
-Sebastian Guaqueta ([@scguaquetam](https://twitter.com/scguaquetam)): Building [happ3n](https://x.com/happ3nxyz) and [WTF Academy Contributor](https://twitter.com/WTFAcademy_).
+Sebastian Guaqueta ([@scguaquetam](https://twitter.com/scguaquetam)): Software Developer at Rootstock , collaborator at [happ3n](https://x.com/happ3nxyz) and [WTF Academy Contributor](https://twitter.com/WTFAcademy_).
 <br />
 
 Nicolas Vergara ([@champilas](https://x.com/champilas)): Backend Developer at [happ3n](https://x.com/happ3nxyz)
