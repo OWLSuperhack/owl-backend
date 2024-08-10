@@ -37,7 +37,7 @@ export default class UserService {
     public async getUserByAddress(address: string) {
         try {
             const userRecord = await sequelize.models.User.findOne({
-                where: { address },
+                where: { address: address.toLowerCase() },
                 include: [
                     {
                         model: sequelize.models.Decision,
@@ -87,12 +87,41 @@ export default class UserService {
             const location = await this.locationService.getLocationById(1);
             const user = {
                 telegramId,
-                address,
+                address: address.toLowerCase(),
                 currentLocation: location.dataValues.locationName,
                 currentMessageIndex: 0,
             };
             const newUser = await sequelize.models.User.create(user);
             return newUser;
+        } catch (error) {
+            LoggerInstance.error('%s', error);
+            throw error;
+        }
+    }
+
+    public async deleteUser(address: string) {
+        try {
+            const userRecord = await this.getUserByAddress(address);
+            if (!userRecord) {
+                return null;
+            }
+            return await userRecord.destroy();
+        } catch (error) {
+            LoggerInstance.error('%s', error);
+        }
+    }
+
+    public async createAttestation(telegramId: string, attestationData: any) {
+        try {
+            const user = await this.getUserByTelegramId(telegramId);
+            if (!user) {
+                throw boom.notFound('User not found');
+            }
+            const attestation = {
+                ...attestationData,
+                userId: user.dataValues.id,
+            };
+            return await sequelize.models.Attestation.create(attestation);
         } catch (error) {
             LoggerInstance.error('%s', error);
             throw error;

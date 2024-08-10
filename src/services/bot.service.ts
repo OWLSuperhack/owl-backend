@@ -6,9 +6,11 @@ import { generalMessages } from '../utils/messages'
 import { delayTimer } from '../utils/others'
 import { stickers } from '../utils/sticker'
 import { getAudioPath, getImagePath, getVideoPath } from '../utils/pathUtils'
+import commandList from '../telegramBot/commandList'
 
-const audioFormat = 'wav'
+const audioFormat = 'mp3'
 const imageFormat = 'png'
+const videoFormat = 'mp4'
 
 export default class BotService {
   public async sendIntroVideo(chatId: string, bot: TelegramBot) {
@@ -33,6 +35,7 @@ export default class BotService {
       console.log('Error on sendIntroVideo:', error)
     }
   }
+
   public async processMultipleOutput(
     actions: string[],
     bot: TelegramBot,
@@ -40,6 +43,7 @@ export default class BotService {
   ) {
     try {
       for (const action of actions) {
+        console.log('Processing action:', action);
         await this.executeAction(action, bot, chatId)
       }
     } catch (error) {
@@ -57,49 +61,37 @@ export default class BotService {
         directMessage = action.split('*')[1]
         action = action.split('*')[0]
       }
-      switch (action) {
-        case '/sendAudio1':
-          await this.sendAudio(1, chatId, bot)
-          break
-        case '/sendAudio2':
-          await this.sendAudio(2, chatId, bot)
-          break
-        case '/sendAudio3':
-          await this.sendAudio(3, chatId, bot)
-          break
-        case '/insertImageVal1':
-          await this.sendImage('imageVal', '1', chatId, bot)
-          break
-        case '/sendMapValRoom':
-          await this.sendImage('mapVal', 'Room', chatId, bot)
-          break
-        case '/sendImageWorkshopEmpty':
-          await this.sendImage('workshop', 'Empty', chatId, bot)
-          break
-        case '/sendImageKitchen':
-          await this.sendImage('kitch', 'en', chatId, bot)
-          break
-        case '/sendMapDownstairs':
-          await this.sendImage('map', 'Downstairs', chatId, bot)
-          break
-        case '/sendImageDadRoom':
-          await this.sendImage('dad', 'Room', chatId, bot)
-          break
-        case '/send':
-          await bot.sendMessage(chatId, directMessage)
-          break
-        default:
-          break
+
+      let parsedAction = action.replace('/send', '');
+      parsedAction = parsedAction.replace(parsedAction.charAt(0), parsedAction.charAt(0).toLowerCase());
+
+      if (action.includes('Audio')) {
+        await this.sendAudio(parsedAction, chatId, bot)
+      } else if (action.includes('Image') || action.includes('Map')) {
+        await this.sendImage(parsedAction, chatId, bot)
+      } else if (action.includes('Video')) {
+        await this.sendVideo(parsedAction, chatId, bot)
+      } else if (action.includes('send')) {
+        await bot.sendMessage(chatId, directMessage)
+      } else {
+        const commandKey = action.replace('/', '').split(' ')[0];
+        if (commandList[commandKey]) {
+          console.log('Processing command listed:', action)
+          await commandList[commandKey](chatId, bot, action)
+        } else {
+          console.log('Processing command:', action)
+          await bot.sendMessage(chatId, `Entering to the else block with command ${action}`)
+        }
       }
     } catch (error) {
       console.log('Error on executeAction:', error)
     }
   }
-  private async sendAudio(index: number, chatId: string, bot: TelegramBot) {
+  private async sendAudio(audio: string, chatId: string, bot: TelegramBot) {
     try {
-      const audioPath = getAudioPath(`audio${index}.${audioFormat}`)
+      const audioPath = getAudioPath(`${audio}.${audioFormat}`)
       await bot.sendAudio(chatId, fs.createReadStream(audioPath), {
-        title: `Audio ${index}`,
+        title: audio,
         performer: 'OWL Bot',
       })
     } catch (error) {
@@ -108,17 +100,30 @@ export default class BotService {
   }
   private async sendImage(
     prefix: string,
-    index: string,
     chatId: string,
     bot: TelegramBot
   ) {
     try {
-      const imagePath = getImagePath(`${prefix}${index}.${imageFormat}`)
+      const imagePath = getImagePath(`${prefix}.${imageFormat}`)
       await bot.sendPhoto(chatId, fs.createReadStream(imagePath), {
-        caption: `${prefix} ${index}`,
+        caption: `${prefix}`,
       })
     } catch (error) {
       console.log('Error on sendImage:', error)
+    }
+  }
+
+  public async sendVideo(video: string, chatId: string, bot: TelegramBot) {
+    try {
+      const videoPath = getVideoPath(`${video}.${videoFormat}`)
+      console.log('videoPath:', videoPath)
+      await bot
+        .sendVideo(chatId, fs.createReadStream(videoPath), {})
+        .catch((err) => {
+          bot.sendMessage(chatId, generalMessages['error']['errorIntro'])
+        })
+    } catch (error) {
+      console.log('Error on sendIntroVideo:', error)
     }
   }
 }

@@ -1,12 +1,11 @@
 import TelegramBot from 'node-telegram-bot-api'
-import * as fs from 'fs'
-import * as path from 'path'
 
 import UserService from '../services/user.service'
 import Web3Service from '../services/web3.service'
 import BotService from '../services/bot.service'
 import MessageService from '../services/message.service'
 import { generalMessages } from '../utils/messages'
+import commandList from './commandList'
 
 const userService = new UserService()
 const web3Service = new Web3Service()
@@ -25,63 +24,19 @@ export function StartBotMessageReceptor() {
 
   const bot = new TelegramBot(token, { polling: true })
 
-  bot.onText(/\/start/, async (msg) => {
-    const chatId = msg.chat.id
-    processCommand('/start', chatId.toString(), bot)
-  })
-  bot.onText(/\/a1/, async (msg) => {
-    const chatId = msg.chat.id
-    processCommand('/a1', chatId.toString(), bot)
-  })
-  bot.onText(/\/a2/, async (msg) => {
-    const chatId = msg.chat.id
-    processCommand('/a2', chatId.toString(), bot)
-  })
-  bot.onText(/\/a3/, async (msg) => {
-    const chatId = msg.chat.id
-    processCommand('/a3', chatId.toString(), bot)
-  })
-  bot.onText(/\/b1/, async (msg) => {
-    const chatId = msg.chat.id
-    processCommand('/b1', chatId.toString(), bot)
-  })
-  bot.onText(/\/b2/, async (msg) => {
-    const chatId = msg.chat.id
-    processCommand('/b2', chatId.toString(), bot)
-  })
-  bot.onText(/\/b3/, async (msg) => {
-    const chatId = msg.chat.id
-    processCommand('/b3', chatId.toString(), bot)
-  })
-  bot.onText(/\/newAddress/, async (msg) => {
-    try {
-      const chatId = msg.chat.id
-      const userDb = await userService.getUserByTelegramId(chatId.toString())
-      if (userDb) {
-        bot.sendMessage(chatId, generalMessages['error']['alreadyRegistered'])
-        return
-      }
-      const parts = msg.text?.split(' ')
-      const address = parts?.slice(1).join(' ')
-      if (!address) {
-        bot.sendMessage(chatId, generalMessages['error']['invalidAddress'])
-        return
-      }
-      await web3Service.readIfAddressIsNew(address, bot, chatId.toString())
-    } catch (error) {
-      console.log('Error on /newAddress:', error)
-      bot.sendMessage(msg.chat.id, generalMessages['error']['errorGeneric'])
-    }
-  })
-  bot.onText(/\/help/, (msg) => {
-    const chatId = msg.chat.id
-    const helpMessage = generalMessages['commands']
-    bot.sendMessage(chatId, helpMessage)
-  })
   bot.on('message', async (msg) => {
+    console.log('entering to the on message')
     try {
       if (msg.text && msg.text.startsWith('/')) {
-        processCommand(msg.text, msg.chat.id.toString(), bot)
+        const commandKey = msg.text.replace('/', '').split(' ')[0];
+        console.log('commandKey:', commandKey)
+        if (commandList[commandKey]) {
+          console.log('Processing command listed:', msg.text)
+          commandList[commandKey](msg.chat.id.toString(), bot, msg)
+        } else {
+          console.log('Processing command:', msg.text)
+          processCommand(msg.text, msg.chat.id.toString(), bot)
+        }
         return
       }
       const chatId = msg.chat.id

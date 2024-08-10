@@ -67,6 +67,10 @@ class User extends Model<UserAttributes> {
             foreignKey: 'userId',
             as: 'decisions',
         });
+        this.hasMany(models.Attestation, {
+            foreignKey: 'userId',
+            as: 'attestations',
+        });
     }
 
     static config(sequelize: Sequelize) {
