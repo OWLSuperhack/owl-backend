@@ -42,8 +42,8 @@ export default class AttestationService {
         },
       });
       const newAttestationUID = await tx.wait();
-      const attestation = await eas.getAttestation(newAttestationUID);
-      //TODO save newAttestationUID to database to the user
+      const attestData = await this.decodeAttestationData(newAttestationUID);
+      return { attestData, newAttestationUID, address };
     } catch (error) {
       console.log('Error on attestData:', error)
       throw error
