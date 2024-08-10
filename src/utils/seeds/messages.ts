@@ -296,7 +296,6 @@ export const messagesValRoom = [
             '/send*Todo va pasando muy rápido',
             '/send*Se acelera tu corazón.',
             '/send*Ya sabes que te vieron y, como si no fuera suficiente, estás a plena luz de la luna enfatizando aún más las marcas que recorren por tu cuerpo.',
-            '/sendAudio6',
             '/send*En un cerrar y abrir de ojos te rodea, incluso, el grupo élite de protección de la corona ¡y te cubre la cabeza entera!',
             '/send*Has vivido con racismo toda tu vida pero esta es la primera vez que sientes un desprecio tan público y el hecho de tener tu Marca de Vida en la piel ¡no te hace un peligro para la sociedad! Es absurdo y te llenas de ira pero, en el fondo, es difícil ignorar el miedo.',
             '/send*El sonido de las persona va disminuyendo rápidamente y tus pasos tropiezan tratando de seguirles el ritmo sin poder ver nada.',
@@ -406,23 +405,12 @@ export const messagesValRoom = [
             '/send*Val: ¿lo reconoces?',
             '/send*Curador: Val, ¿no has notado que este collar y las marcas de esta fuente coinciden? Mira más de cerca.',
             '/send*Te acercas y notas cómo el pendiente ilumina las piezas quebradas en tres colores distintos al rededor de la fuente.',
-            '/sendImageFountain1',
+            '/sendImageFountainQuest',
             `/send*Usa /answer para interactuar con la fuente.` 
         ],
         command: '/a2',
     },
     //8
-    {
-        id: uuidv4(),
-        location_id: 13, 
-        message_index: 8, 
-        next_level: true, //TODO: next_level: false,
-        next_locations: 'Museum', //TODO: delete this line
-        output: [
-            '/answerMuseum',
-        ],
-        command: '/answer',
-    },
     //9
     {
         id: uuidv4(),
@@ -431,8 +419,10 @@ export const messagesValRoom = [
         next_level: true,
         next_locations: 'Mipha\'s Castle',
         output: [
+            '/submitAttestation',
             '/sendAudio8',
             '/send*Curador: ¡Espectacular! ¡Mira lo que lograste! ¡La fuente está viva de nuevo!',
+            '/sendImageFountain',
             '/send*Val: Me pregunto qué dice ... ',
             '/resultMuseum',
             '/send*Val: Es hora de volver al castillo',

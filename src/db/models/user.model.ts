@@ -8,6 +8,7 @@ interface UserAttributes {
     address: string;
     currentLocation?: string;
     currentMessageIndex?: number;
+    tokenId?: number;
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -24,6 +25,10 @@ const UserSchema = {
         allowNull: false,
         unique: true,
         type: DataTypes.STRING,
+    },
+    tokenId: {
+        field: 'token_id',
+        type: DataTypes.INTEGER,
     },
     address: {
         allowNull: false,
@@ -56,6 +61,7 @@ class User extends Model<UserAttributes> {
 
     public id!: string;
     public telegramId!: string;
+    public tokenId!: number;
     public address!: string;
     public currentLocation!: string;
     public currentMessageIndex!: number;

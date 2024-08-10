@@ -128,4 +128,61 @@ export default class UserService {
         }
     }
 
+    public async registerAnswer(telegramId: string, selection: string) {
+        try {
+            const user = await this.getUserByTelegramId(telegramId);
+            if (!user) {
+                throw boom.notFound('User not found');
+            }
+            const decision = {
+                userId: user.dataValues.id,
+                locationName: user.dataValues.currentLocation,
+                messageIndex: user.dataValues.currentMessageIndex,
+                selection,
+            };
+            return await sequelize.models.Decision.create(decision);
+        } catch (error) {
+            LoggerInstance.error('%s', error);
+            throw error;
+        }
+    }
+
+    public async getUserAnswers(telegramId: string) {
+        try {
+            const user = await this.getUserByTelegramId(telegramId);
+            if (!user) {
+                throw boom.notFound('User not found');
+            }
+            
+            const decisions = await sequelize.models.Decision.findAndCountAll({
+                where: { 
+                    userId: user.dataValues.id,
+                    locationName: user.dataValues.currentLocation,
+                    messageIndex: user.dataValues.currentMessageIndex,
+                },
+            });
+
+            return decisions;
+
+        } catch (error) {
+            LoggerInstance.error('%s', error);
+            throw error;
+        }
+    }
+
+    public async UpdateUserProgress(telegramId: string, nextLocation: string) {
+        try {
+            const user = await this.getUserByTelegramId(telegramId);
+            if (!user) {
+                throw boom.notFound('User not found');
+            }
+            return await user.update({
+                currentMessageIndex: user.dataValues.currentMessageIndex + 1,
+                currentLocation: nextLocation,
+            });
+        } catch (error) {
+            LoggerInstance.error('%s', error);
+        }
+    }
+
 }

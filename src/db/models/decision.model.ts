@@ -7,10 +7,9 @@ const DECISION_TABLE = 'decisions';
 interface DecisionAttributes {
     id: string;
     userId: string;
-    locationId: string;
+    locationName: string;
     messageIndex: number;
-    chosenLocation: string;
-    decisionTime?: Date;
+    selection: string;
 }
 
 const DecisionSchema = {
@@ -31,31 +30,19 @@ const DecisionSchema = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
     },
-    locationId: {
-        field: 'location_id',
-        type: DataTypes.INTEGER,
+    locationName: {
+        field: 'location_name',
+        type: DataTypes.STRING,
         allowNull: false,
-        references: {
-            model: LOCATION_TABLE,
-            key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
     },
     messageIndex: {
         field: 'message_index',
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    chosenLocation: {
-        field: 'chosen_location',
+    selection: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    decisionTime: {
-        field: 'decision_time',
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
     },
 };
 
@@ -63,19 +50,14 @@ class Decision extends Model<DecisionAttributes> {
 
     public id!: string;
     public userId!: string;
-    public locationId!: string;
+    public locationName!: string;
     public messageIndex!: number;
-    public chosenLocation!: string;
-    public decisionTime!: Date;
+    public selection!: string;
 
     static associate(models: any) {
         this.belongsTo(models.User, {
             foreignKey: 'userId',
             as: 'user',
-        });
-        this.belongsTo(models.Location, {
-            foreignKey: 'locationId',
-            as: 'location',
         });
     }
 
