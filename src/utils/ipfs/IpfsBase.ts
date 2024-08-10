@@ -49,7 +49,7 @@ export function ProvideBase(
         },
       ]
       break
-    case 1:
+    case 6:
       body.description = 'This is the second level of the OWL Progress Badge'
       body.image = ProvideImage(1)
       body.attributes = [
@@ -85,7 +85,7 @@ export function ProvideBase(
         },
       ]
       break
-    case 2:
+    case 10:
       body.description = 'This is the third level of the OWL Progress Badge'
       body.image = ProvideImage(2)
       body.attributes = [
@@ -121,7 +121,7 @@ export function ProvideBase(
         },
       ]
       break
-    case 3:
+    case 11:
       body.description = 'This is the fourth level of the OWL Progress Badge'
       body.image = ProvideImage(3)
       body.attributes = [

@@ -8,12 +8,15 @@ import { AttestationAttributes } from "../db/models/attestation.model"
 import { stickers } from "../utils/sticker"
 import ActivityService from "../services/activity.service"
 import BotService from "../services/bot.service"
+import NFTService from "../services/nft.service"
+import { config } from "../config/config"
 
 const userService = new UserService()
 const web3Service = new Web3Service()
 const messageService = new MessageService()
 const attestationService = new AttestationService()
 const activityService = new ActivityService()
+const nftService = new NFTService();
 
 
 exports.newAddress = async function (chatId: string, bot: TelegramBot, msg: TelegramBot.Message) {
@@ -58,7 +61,8 @@ exports.delete = async function (chatId: string, bot: TelegramBot, msg: Telegram
 
 exports.submitAttestation = async function (chatId: string, bot: TelegramBot, msg: TelegramBot.Message) {
     try {
-      await bot. sendMessage(chatId, stickers['thinking'])
+      await bot.sendMessage(chatId, stickers['thinking'])
+      await bot.sendMessage(chatId, 'Procesando...')
       const user = await userService.getUserByTelegramId(chatId);
       if (!user) {
         bot.sendMessage(chatId, generalMessages['error']['notRegistered'])
@@ -84,8 +88,24 @@ exports.submitAttestation = async function (chatId: string, bot: TelegramBot, ms
       }
 
       const message = await userService.createAttestation(chatId, createUserAttest);
-      if (message) {
-        await bot.sendMessage(chatId, 'Felicitaciones por tu nueva attestation, su UUID es: ' + result.newAttestationUID);
+
+      const update = await nftService.updateNFTMetadata(
+        createUserAttest.id,
+        createUserAttest.index,
+        createUserAttest.location,
+        createUserAttest.address,
+        "0x",
+        user.dataValues.tokenId,
+        {trait_type: 'Attestation In Game', value: `${config.nft.attestationUrl}${result.newAttestationUID}`}
+      )
+      
+      if (message && update) {
+        await bot.sendMessage(
+          chatId,
+          `Felicitaciones por tu nueva attestation, pudes consultarla en
+          \n${config.nft.attestationUrl}${result.newAttestationUID}
+          \nTu NFT ha sido actualizado con la nueva attestation, revisalo en
+          \n${config.nft.openSeaUrl}${user.dataValues.tokenId}`);
       } else {
         await bot.sendMessage(chatId, 'Algo salio mal creando la attestation');
       }
