@@ -170,6 +170,27 @@ export default class UserService {
         }
     }
 
+    public async getAllUserAnswers(telegramId: string) {
+        try {
+            const user = await this.getUserByTelegramId(telegramId);
+            if (!user) {
+                throw boom.notFound('User not found');
+            }
+            
+            const decisions = await sequelize.models.Decision.findAndCountAll({
+                where: { 
+                    userId: user.dataValues.id,
+                },
+            });
+
+            return decisions;
+
+        } catch (error) {
+            LoggerInstance.error('%s', error);
+            throw error;
+        }
+    }
+
     public async UpdateUserProgress(telegramId: string, nextLocation: string) {
         try {
             const user = await this.getUserByTelegramId(telegramId);

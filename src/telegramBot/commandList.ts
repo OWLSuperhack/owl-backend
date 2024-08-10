@@ -144,12 +144,36 @@ exports.answer = async function (chatId: string, bot: TelegramBot, msg: Telegram
     }
 }
 
+exports.resultMuseum = async function (chatId: string, bot: TelegramBot, msg: TelegramBot.Message) {
+    try {
+        const user = await userService.getUserByTelegramId(chatId);
+        if (!user) {
+          bot.sendMessage(chatId, generalMessages['error']['notRegistered'])
+          return
+        }
+        const decisions = await userService.getAllUserAnswers(chatId);
+        console.log("decisions", decisions)
+        const decisionsMuseum = decisions.rows.filter((decision) => decision.dataValues.locationName === 'Museum');
+        console.log("decisionsMuseum", decisionsMuseum)
+        for await (const decision of decisionsMuseum) {
+          const message = await activityService.getAnwswerEnglish(decision.dataValues.selection);
+          if (message) {
+            await bot.sendMessage(chatId, `${message.dataValues.english} - ${message.dataValues.spanish}`);
+          } 
+        }
+    } catch (error) {
+        console.log('Error on /resultMuseum:', error)
+        bot.sendMessage(msg.chat.id, generalMessages['error']['errorGeneric'])
+    }
+}
+
 const commandList : { [key: string]: any } = {
     newAddress: exports.newAddress,
     help: exports.help,
     submitAttestation: exports.submitAttestation,
     delete: exports.delete,
     answer: exports.answer,
+    resultMuseum: exports.resultMuseum,
 } 
 
 export default commandList;
