@@ -107,30 +107,13 @@ exports.deleteAccount = async function (chatId: string, bot: TelegramBot, msg: T
     bot.sendMessage(msg.chat.id, generalMessages['error']['errorGeneric'])
     }
 }
-//TEST ONLY FUNCTION
-// exports.mintNft = async function (chatId: string, bot: TelegramBot, msg: TelegramBot.Message) {
-//   try {
-//     console.log('Minting NFT');
-//     const mintInfo : NftMintResponse | null = await nftService.mintNFT({
-//       to: "0x9DA1cC61b11FD1AB42F6bB26ac97C13187312A40",
-//       id: chatId,
-//       index: 2,
-//       location: "Test location",
-//       data: "0x"
-//     })
-//     console.log('hash:', mintInfo);
-//   } catch (error) {
-//     console.log('Error on mintnft:', error)
-//     bot.sendMessage(msg.chat.id, generalMessages['error']['errorGeneric'])
-//   }
-// }
+
 
 const commandList : { [key: string]: any } = {
     newAddress: exports.newAddress,
     help: exports.help,
     submitAttestation: exports.submitAttestation,
     delete: exports.delete,
-    // mintNft: exports.mintNft,
 } 
 
 export default commandList;
