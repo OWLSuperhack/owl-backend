@@ -10,6 +10,10 @@ type Props = {
   location: string
   data: string
 }
+export type NftMintResponse = {
+  txHash: string | undefined | null
+  tokenId: string
+}
 
 const ipfsService = new IPFSService()
 
@@ -42,13 +46,17 @@ export default class NFTService {
       const eventProcessLogs = txProcessReceipt?.logs.filter((log) => {
         try {
           const parsedLog = nftContract.interface.parseLog(log)
-          return parsedLog?.name === 'Transfer'
+          return parsedLog?.name === 'MetadataUpdate'
         } catch (error) {
           return false
         }
       })
       if (eventProcessLogs && eventProcessLogs.length > 0) {
-        return txHash
+        const response : NftMintResponse = {
+          txHash: txHash,
+          tokenId: BigInt(eventProcessLogs[0].data).toString()
+        }
+        return response
       } else {
         return null
       }
