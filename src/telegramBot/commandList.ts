@@ -114,7 +114,7 @@ exports.deleteAccount = async function (chatId: string, bot: TelegramBot, msg: T
 //     const mintInfo : NftMintResponse | null = await nftService.mintNFT({
 //       to: "0x9DA1cC61b11FD1AB42F6bB26ac97C13187312A40",
 //       id: chatId,
-//       index: 0,
+//       index: 2,
 //       location: "Test location",
 //       data: "0x"
 //     })

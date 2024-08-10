@@ -28,7 +28,6 @@ export default class NFTService {
         throw new Error('RPC or PK not provided')
       }
       const ipfsBody = ProvideBase(
-        0,
         id,
         index,
         location,

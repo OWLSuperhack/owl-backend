@@ -1,5 +1,4 @@
 export function ProvideBase(
-  level: number,
   id: string,
   index: number,
   location: string,
@@ -13,14 +12,15 @@ export function ProvideBase(
     name: 'OWL Progress Badge',
     attributes: [{}],
   }
-  switch (level) {
+  switch (index) {
     case 0:
       body.description = 'This is the first level of the OWL Progress Badge'
       body.image = ProvideImage(0)
       body.attributes = [
         {
+          display_type: "number", 
           trait_type: 'Level',
-          value: 'Level 1',
+          value: '1',
         },
         {
           trait_type: 'Rarity',
@@ -39,6 +39,7 @@ export function ProvideBase(
           value: id,
         },
         {
+          display_type: "boost_percentage",
           trait_type: 'Progress',
           value: index,
         },
@@ -53,8 +54,9 @@ export function ProvideBase(
       body.image = ProvideImage(1)
       body.attributes = [
         {
+          display_type: "number", 
           trait_type: 'Level',
-          value: 'Level 2',
+          value: '2',
         },
         {
           trait_type: 'Rarity',
@@ -73,6 +75,7 @@ export function ProvideBase(
           value: id,
         },
         {
+          display_type: "boost_percentage",
           trait_type: 'Progress',
           value: index,
         },
@@ -87,8 +90,9 @@ export function ProvideBase(
       body.image = ProvideImage(2)
       body.attributes = [
         {
+          display_type: "number", 
           trait_type: 'Level',
-          value: 'Level 3',
+          value: '3',
         },
         {
           trait_type: 'Rarity',
@@ -107,6 +111,7 @@ export function ProvideBase(
           value: id,
         },
         {
+          display_type: "boost_percentage",
           trait_type: 'Progress',
           value: index,
         },
@@ -121,8 +126,9 @@ export function ProvideBase(
       body.image = ProvideImage(3)
       body.attributes = [
         {
+          display_type: "number", 
           trait_type: 'Level',
-          value: 'Level 4',
+          value: '4',
         },
         {
           trait_type: 'Rarity',
@@ -141,6 +147,7 @@ export function ProvideBase(
           value: id,
         },
         {
+          display_type: "boost_percentage",
           trait_type: 'Progress',
           value: index,
         },
@@ -155,8 +162,9 @@ export function ProvideBase(
       body.image = ProvideImage(0)
       body.attributes = [
         {
+          display_type: "number", 
           trait_type: 'Level',
-          value: 'Level 1',
+          value: '1',
         },
         {
           trait_type: 'Rarity',
@@ -175,6 +183,7 @@ export function ProvideBase(
           value: id,
         },
         {
+          display_type: "boost_percentage",
           trait_type: 'Progress',
           value: index,
         },
