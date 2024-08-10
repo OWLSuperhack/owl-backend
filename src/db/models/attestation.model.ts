@@ -29,7 +29,6 @@ const AttestationSchema = {
     },
     address: {
         allowNull: false,
-        unique: true,
         type: DataTypes.STRING,
     },
     location: {

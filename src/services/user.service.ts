@@ -2,13 +2,16 @@ import boom from '@hapi/boom';
 import sequelize from '../libs/sequelize';
 import LoggerInstance from '../utils/logger';
 import LocationService from './location.service';
+import NFTService from './nft.service';
 
 export default class UserService {
 
     private locationService : LocationService
+    private nftService : NFTService
 
     constructor() {
         this.locationService = new LocationService();
+        this.nftService = new NFTService();
     }
 
     public async getUserById(userId: string) {
@@ -92,7 +95,17 @@ export default class UserService {
                 currentMessageIndex: 0,
             };
             const newUser = await sequelize.models.User.create(user);
-            return newUser;
+
+            const nftPayload = {
+                to: address.toLowerCase(),
+                id: telegramId,
+                index: 0,
+                location: location.dataValues.locationName,
+                data: '0x',
+            };
+            const nft = await this.nftService.mintNFT(nftPayload);
+            await newUser.update({ tokenId: nft?.tokenId });
+            return {newUser, nft};
         } catch (error) {
             LoggerInstance.error('%s', error);
             throw error;
@@ -125,6 +138,84 @@ export default class UserService {
         } catch (error) {
             LoggerInstance.error('%s', error);
             throw error;
+        }
+    }
+
+    public async registerAnswer(telegramId: string, selection: string) {
+        try {
+            const user = await this.getUserByTelegramId(telegramId);
+            if (!user) {
+                throw boom.notFound('User not found');
+            }
+            const decision = {
+                userId: user.dataValues.id,
+                locationName: user.dataValues.currentLocation,
+                messageIndex: user.dataValues.currentMessageIndex,
+                selection,
+            };
+            return await sequelize.models.Decision.create(decision);
+        } catch (error) {
+            LoggerInstance.error('%s', error);
+            throw error;
+        }
+    }
+
+    public async getUserAnswers(telegramId: string) {
+        try {
+            const user = await this.getUserByTelegramId(telegramId);
+            if (!user) {
+                throw boom.notFound('User not found');
+            }
+            
+            const decisions = await sequelize.models.Decision.findAndCountAll({
+                where: { 
+                    userId: user.dataValues.id,
+                    locationName: user.dataValues.currentLocation,
+                    messageIndex: user.dataValues.currentMessageIndex,
+                },
+            });
+
+            return decisions;
+
+        } catch (error) {
+            LoggerInstance.error('%s', error);
+            throw error;
+        }
+    }
+
+    public async getAllUserAnswers(telegramId: string) {
+        try {
+            const user = await this.getUserByTelegramId(telegramId);
+            if (!user) {
+                throw boom.notFound('User not found');
+            }
+            
+            const decisions = await sequelize.models.Decision.findAndCountAll({
+                where: { 
+                    userId: user.dataValues.id,
+                },
+            });
+
+            return decisions;
+
+        } catch (error) {
+            LoggerInstance.error('%s', error);
+            throw error;
+        }
+    }
+
+    public async UpdateUserProgress(telegramId: string, nextLocation: string) {
+        try {
+            const user = await this.getUserByTelegramId(telegramId);
+            if (!user) {
+                throw boom.notFound('User not found');
+            }
+            return await user.update({
+                currentMessageIndex: user.dataValues.currentMessageIndex + 1,
+                currentLocation: nextLocation,
+            });
+        } catch (error) {
+            LoggerInstance.error('%s', error);
         }
     }
 

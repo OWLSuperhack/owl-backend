@@ -13,6 +13,8 @@ const imageFormat = 'png'
 const videoFormat = 'mp4'
 
 export default class BotService {
+  constructor() {}
+
   public async sendIntroVideo(chatId: string, bot: TelegramBot) {
     try {
       bot.sendMessage(chatId, generalMessages['welcome'])

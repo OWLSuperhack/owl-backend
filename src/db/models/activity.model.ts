@@ -4,7 +4,6 @@ const ACTIVITY_TABLE = 'activities';
 
 interface ActivityAttributes {
     id: number;
-    type: string;
     english: string;
     spanish: string;
 }
@@ -14,10 +13,6 @@ const ActivitySchema = {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-    },
-    type: {
-        allowNull: false,
-        type: DataTypes.STRING,
     },
     english: {
         allowNull: false,
@@ -32,7 +27,6 @@ const ActivitySchema = {
 class Activity extends Model<ActivityAttributes> {
 
     public id!: number;
-    public type!: string;
     public english!: string;
     public spanish!: string;
 

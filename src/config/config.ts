@@ -12,6 +12,10 @@ interface Config {
   logs: {
     level: string;
   };
+  nft: {
+    attestationUrl: string;
+    openSeaUrl: string;
+  };
 }
 
 const config: Config = {
@@ -27,6 +31,10 @@ const config: Config = {
 
     logs: {
       level: process.env.LOG_LEVEL || 'silly',
+    },
+    nft: {
+      attestationUrl: process.env.ATTESTATION_URL || '',
+      openSeaUrl: process.env.OPENSEA_URL || '',
     },
 }
 
