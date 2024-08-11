@@ -187,6 +187,27 @@ exports.resultMuseum = async function (chatId: string, bot: TelegramBot, msg: Te
     }
 }
 
+exports.processStartWorldcoin = async function (chatId: string, bot: TelegramBot, msg: TelegramBot.Message) {
+    try {
+        const user = await userService.getUserByTelegramId(chatId);
+        if (!user) {
+          bot.sendMessage(chatId, generalMessages['error']['notRegistered'])
+          return
+        }
+        const message = `Es hora de explorar un nuevo mundo tecnológico.
+            \nEstás aprendiendo inglés y navegando en nuevos horizontes. Ahora es el momento de descubrir Worldcoin.
+            \nWorldcoin es una plataforma que te permite demostrar tu singularidad en el mundo mientras recibes incentivos como renta básica.
+            \n¿Cómo empezar?
+            \n1.  Haz clic en el siguiente enlace: 
+            \n${config.worldcoin.url}/authorize?state=${chatId}&redirect_uri=${encodeURI(config.worldcoin.callbackUrl)}&response_type=code&scope=openid&client_id=${config.worldcoin.appId}
+            \n2.  Sigue las instrucciones para crear tu cuenta y verificar tu identidad.`;
+        bot.sendMessage(chatId, message);
+    } catch (error) {
+        console.log('Error on /startWorldcoin:', error)
+        bot.sendMessage(msg.chat.id, generalMessages['error']['errorGeneric'])
+    }
+}
+
 const commandList : { [key: string]: any } = {
     newAddress: exports.newAddress,
     help: exports.help,
@@ -194,6 +215,7 @@ const commandList : { [key: string]: any } = {
     delete: exports.delete,
     answer: exports.answer,
     resultMuseum: exports.resultMuseum,
+    processStartWorldcoin: exports.processStartWorldcoin,
 } 
 
 export default commandList;

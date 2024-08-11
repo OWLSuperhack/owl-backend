@@ -11,6 +11,7 @@ const userService = new UserService()
 const web3Service = new Web3Service()
 const botService = new BotService()
 const messageService = new MessageService()
+export let bot : TelegramBot
 
 export function StartBotMessageReceptor() {
   console.log('starting bot')
@@ -22,7 +23,7 @@ export function StartBotMessageReceptor() {
     process.exit(1)
   }
 
-  const bot = new TelegramBot(token, { polling: true })
+  bot = new TelegramBot(token, { polling: true })
 
   bot.on('message', async (msg) => {
     console.log('entering to the on message')
