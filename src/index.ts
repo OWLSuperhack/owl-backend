@@ -27,7 +27,7 @@ app.use(ormErrorHandler)
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-//StartBotMessageReceptor();
+StartBotMessageReceptor();
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

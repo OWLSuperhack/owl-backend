@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import { config } from '../../config/config';
 
 export const messagesValRoom = [
     { 
@@ -340,11 +341,10 @@ export const messagesValRoom = [
         id: uuidv4(),
         location_id: 8, 
         message_index: 6, 
-        next_level: false, //next_level: true,
-        //next_locations: 'Forest of Souls',
+        next_level: false,
         output: [
-            '/send*El bosque de almas estará disponible en la próxima actualización. Por favor, selecciona otra opción.',
-            //'/worldCoinSidequest'
+            '/sendAudio10',
+            `/processStartWorldcoin`,
         ],
         command: '/entrar',
     },

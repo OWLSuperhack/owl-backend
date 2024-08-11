@@ -1,9 +1,12 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import axios from 'axios';
 import { config } from '../config/config';
+import TelegramBot from 'node-telegram-bot-api';
+import { bot } from '../telegramBot/messageReceptor';
+import UserService from '../services/user.service';
 
 const route = Router();
-//authorize?redirect_uri=https%3A%2F%2Fdocs.worldcoin.org%2Ftry-callback&response_type=code&scope=openid+profile+email&client_id=app_ce4cb73cb75fc3b73b71ffb4de178410'
+const userService = new UserService();
 
 export default (app: Router) => {
     app.use('/worldcoin', route);
@@ -11,7 +14,7 @@ export default (app: Router) => {
     route.get('/authorize',
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const url = `${config.worldcoin.url}/authorize?redirect_uri=${encodeURI(config.worldcoin.callbackUrl)}&response_type=code&scope=openid&client_id=${config.worldcoin.appId}`;
+            const url = `${config.worldcoin.url}/authorize?state=${5058531629}&redirect_uri=${encodeURI(config.worldcoin.callbackUrl)}&response_type=code&scope=openid&client_id=${config.worldcoin.appId}`;
             return res.status(200).json(url);
         }
         catch (e) {
@@ -35,7 +38,6 @@ export default (app: Router) => {
                 },
             });
 
-            //Request user info
             const urlUser = `${config.worldcoin.url}/userinfo`;
             const responseUser = await axios.post(urlUser, {},{
                 headers: {
@@ -43,7 +45,18 @@ export default (app: Router) => {
                 },
             });
 
-            return res.status(200).json(responseUser.data.sub);
+            const chatId = req.query.state as TelegramBot.ChatId;
+
+            const user = await userService.getUserByTelegramId(chatId.toString());
+            if (!user) {
+                await bot.sendMessage(chatId, 'Algo ha salido mal con el proceso, intenta nuevamente');
+                return res.status(200).json({message: 'Todo ha salido bien, ya puedes volver a telegram'});
+            }
+            await user?.update({worldcoinId: responseUser.data.sub});
+            await bot.sendMessage(chatId, '¡Felicidades! Tu marca de vida Worldcoin ha sido registrada. Tu registro es: ' + responseUser.data.sub);
+            await bot.sendMessage(chatId, 'Mipha: ¡Sabía que había escogido bien! Ahora tienes que /verMapa para seguir tu camino. Que la suerte esté de tu lado.');
+            
+            return res.status(200).json({message: 'Todo ha salido bien, ya puedes volver a telegram'});
         }
         catch (e) {
             next(e);

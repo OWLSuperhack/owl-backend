@@ -12,6 +12,7 @@ interface UserAttributes {
     createdAt?: Date;
     updatedAt?: Date;
     hash?: string;
+    worldcoinId?: string;
 }
 
 const UserSchema = {
@@ -48,6 +49,10 @@ const UserSchema = {
         field: 'current_message_index',
         type: DataTypes.INTEGER,
     },
+    worldcoinId: {
+        field: 'worldcoin_id',
+        type: DataTypes.STRING,
+    },
     createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
@@ -70,6 +75,7 @@ class User extends Model<UserAttributes> {
     public address!: string;
     public currentLocation!: string;
     public currentMessageIndex!: number;
+    public worldcoinId!: string;
     public createdAt!: Date;
     public updatedAt!: Date;
     public hash!: string;
