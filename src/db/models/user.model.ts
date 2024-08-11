@@ -11,6 +11,7 @@ interface UserAttributes {
     tokenId?: number;
     createdAt?: Date;
     updatedAt?: Date;
+    hash?: string;
 }
 
 const UserSchema = {
@@ -29,6 +30,10 @@ const UserSchema = {
     tokenId: {
         field: 'token_id',
         type: DataTypes.INTEGER,
+    },
+    hash: {
+        field: 'hash',
+        type: DataTypes.STRING,
     },
     address: {
         allowNull: false,
@@ -67,6 +72,7 @@ class User extends Model<UserAttributes> {
     public currentMessageIndex!: number;
     public createdAt!: Date;
     public updatedAt!: Date;
+    public hash!: string;
 
     static associate(models: any) {
         this.hasMany(models.Decision, {

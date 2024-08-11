@@ -104,7 +104,7 @@ export default class UserService {
                 data: '0x',
             };
             const nft = await this.nftService.mintNFT(nftPayload);
-            await newUser.update({ tokenId: nft?.tokenId });
+            await newUser.update({ tokenId: nft?.tokenId, hash: nft?.txHash });
             return {newUser, nft};
         } catch (error) {
             LoggerInstance.error('%s', error);

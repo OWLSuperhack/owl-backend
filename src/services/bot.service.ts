@@ -107,9 +107,7 @@ export default class BotService {
   ) {
     try {
       const imagePath = getImagePath(`${prefix}.${imageFormat}`)
-      await bot.sendPhoto(chatId, fs.createReadStream(imagePath), {
-        caption: `${prefix}`,
-      })
+      await bot.sendPhoto(chatId, fs.createReadStream(imagePath))
     } catch (error) {
       console.log('Error on sendImage:', error)
     }
