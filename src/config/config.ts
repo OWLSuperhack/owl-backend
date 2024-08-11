@@ -16,6 +16,12 @@ interface Config {
     attestationUrl: string;
     openSeaUrl: string;
   };
+  worldcoin: {
+    url: string;
+    clientSecret: string;
+    appId: string;
+    callbackUrl: string;
+  };
 }
 
 const config: Config = {
@@ -35,6 +41,12 @@ const config: Config = {
     nft: {
       attestationUrl: process.env.ATTESTATION_URL || '',
       openSeaUrl: process.env.OPENSEA_URL || '',
+    },
+    worldcoin: {
+      url: process.env.WORLDCOIN_URL || '',
+      clientSecret: process.env.WORLDCOIN_CLIENT_SECRET || '',
+      appId: process.env.WORLDCOIN_APP_ID || '',
+      callbackUrl: process.env.WORLDCOIN_REDIRECT_URL || '',
     },
 }
 
