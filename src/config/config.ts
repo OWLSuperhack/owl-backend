@@ -15,6 +15,7 @@ interface Config {
   nft: {
     attestationUrl: string;
     openSeaUrl: string;
+    blockScout: string;
   };
   worldcoin: {
     url: string;
@@ -41,6 +42,7 @@ const config: Config = {
     nft: {
       attestationUrl: process.env.ATTESTATION_URL || '',
       openSeaUrl: process.env.OPENSEA_URL || '',
+      blockScout: process.env.BLOCKSCOUT_URL || '',
     },
     worldcoin: {
       url: process.env.WORLDCOIN_URL || '',
