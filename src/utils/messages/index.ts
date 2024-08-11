@@ -1,10 +1,10 @@
 export const generalMessages = {
   welcome:
-    'Bienvenido a OWL!\nPara poder empezar, por favor pónle atención al siguiente video:',
+    'Bienvenido a OWL!\n\nPara poder empezar, por favor pónle atención al siguiente video:',
   intro:
-    'Cuando termines de ver y seguir las instrucciones, escribe y envía /newAddress seguido de tu nueva dirección de billetera.',
+    'Paso siguiente: Registrar tu dirección de billetera\nDespués de seguir las instrucciones, envía el comando /newAddress seguido de la dirección de tu billetera que copiaste de Coinbase Wallet.\n🔍 Ejemplo: /newAddress 0x7f3c8991CbdFC3e90485190423A0B73F8F5C0678\nEsto nos ayudará a registrar tu marca de vida y comenzar esta aventura. 🚀',
   startMsg: '¡Perfecto! ahora envía tu primer comando y escribe: /start',
-  sendMapValRoom: '¿Qué quieres hacer?',
+  sendMapValRoom: '¿Qué quieres hacer? \n',
   sendMapDownstairs: 'Voy a buscar a papá. Debe estar en la sala.',
   error: {
     errorGeneric: 'Error, por favor intenta de nuevo más tarde.',

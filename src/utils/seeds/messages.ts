@@ -32,7 +32,7 @@ export const messagesValRoom = [
             '/sendAudio3',
             '/send*Tu atención se atrae al sonido de la voz de tu papá como tratando de sintonizar una estación de radio que no sea ruido blanco. Desde el primer piso oyes la voz de Papá llamándote.',
             '/sendMapValRoom',
-            '/send*¿Qué quieres hacer?'
+            '/send*Para interactuar con este mapa, dile al bot a dónde quieres ir. Tus opciones son: /a1, /a2 o /a3.\n¿Qué quieres hacer?'
         ],
         command: '/start',
     },
@@ -41,7 +41,8 @@ export const messagesValRoom = [
         location_id: 1, 
         message_index: 0, 
         output: [
-            '/send*No me puedo quedar en cama. Debería ir a ver qué necesita papá.'
+            '/send*No me puedo quedar en cama. Debería ir a ver qué necesita papá.',
+            '/send* Tienes otras opciones. /a2 o /a3.\n¿Qué quieres hacer?'
         ],
         next_level: false,
         command: '/a1',
@@ -52,7 +53,8 @@ export const messagesValRoom = [
         message_index: 0, 
         next_level: false,
         output: [
-            '/send*¡AUCH!\nAntes de poder pensar qué querrá papá, te tropiezas con la alfombra y peleas contra la gravedad hasta terminar en la puerta y recuperar tu balance.'
+            '/send*¡AUCH!\nAntes de poder pensar qué querrá papá, te tropiezas con la alfombra y peleas contra la gravedad hasta terminar en la puerta y recuperar tu balance.',
+            '/send* Todavía tienes otra opción: /a3.'
         ],
         command: '/a2',
     },
@@ -64,7 +66,9 @@ export const messagesValRoom = [
         next_locations: 'Inside the house',
         output: [
             '/sendMapDownstairs',
-            '/send*Voy a buscar a papá. Debe estar en la sala.'
+            '/send*Voy a buscar a papá. Debe estar en la sala.',
+            '/send*Para interactuar con este mapa dile al bot a donde quieres ir.\nTus opciones son: /a1, /a2, /a3, /b1, /b2, /b3.',
+            '/¿Qué quieres hacer'
         ],
         command: '/a3',
     },
@@ -239,7 +243,7 @@ export const messagesValRoom = [
         message_index: 4, 
         next_level: false,
         output: [
-            '/send*No puedo quedarme en casa ahora. Debo llevar la escultua',
+            '/send*No puedo quedarme en casa ahora. Debo llevar la escultura',
         ],
         command: '/a1',
     },
@@ -250,6 +254,7 @@ export const messagesValRoom = [
         next_level: false,
         output: [
             '/send*El museo es un lugar tranquilo. Tal vez pueda ir allá despues.',
+            '/send* Tienes otras opciones.\n¿Qué quieres hacer?'
  
         ],
         command: '/a2',
@@ -261,6 +266,7 @@ export const messagesValRoom = [
         next_level: false,
         output: [
             '/send*Me encanta el olor a libros de la biblioteca. Quizás pueda ir para allá mas tarde.',
+            '/send* Tienes otras opciones.\n¿Qué quieres hacer?'
 
         ],
         command: '/a3',
@@ -272,6 +278,7 @@ export const messagesValRoom = [
         next_level: false,
         output: [
             '/send*Recuerdo que cerca a mi casa hay una vieja fuente abandonada. Tal vez pueda ir despues allá.',
+            '/send* Tienes otras opciones.\n¿Qué quieres hacer?'
         ],
         command: '/b1',
     },
