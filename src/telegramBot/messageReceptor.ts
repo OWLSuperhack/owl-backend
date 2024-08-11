@@ -14,7 +14,6 @@ const messageService = new MessageService()
 export let bot : TelegramBot
 
 export function StartBotMessageReceptor() {
-  console.log('starting bot')
 
   const token = process.env.TELEGRAM_BOT_TOKEN
 
@@ -26,16 +25,13 @@ export function StartBotMessageReceptor() {
   bot = new TelegramBot(token, { polling: true })
 
   bot.on('message', async (msg) => {
-    console.log('entering to the on message')
+
     try {
       if (msg.text && msg.text.startsWith('/')) {
         const commandKey = msg.text.replace('/', '').split(' ')[0];
-        console.log('commandKey:', commandKey)
         if (commandList[commandKey]) {
-          console.log('Processing command listed:', msg.text)
           commandList[commandKey](msg.chat.id.toString(), bot, msg)
         } else {
-          console.log('Processing command:', msg.text)
           processCommand(msg.text, msg.chat.id.toString(), bot)
         }
         return
@@ -68,7 +64,6 @@ export function StartBotMessageReceptor() {
           chatId,
           command
         )
-        console.log(`response for ${command} is :`, response?.dataValues)
         if (response) {
           if (response.dataValues.output && response.dataValues.output.length > 0) {
             botService.processMultipleOutput(

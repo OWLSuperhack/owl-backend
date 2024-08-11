@@ -25,7 +25,7 @@ export default class BotService {
         }, 3000)
       })
       const videoPath = getVideoPath('intro.mp4')
-      console.log('videoPath:', videoPath)
+
       await bot
         .sendVideo(chatId, fs.createReadStream(videoPath), {})
         .catch((err) => {
@@ -45,7 +45,6 @@ export default class BotService {
   ) {
     try {
       for (const action of actions) {
-        console.log('Processing action:', action);
         await this.executeAction(action, bot, chatId)
       }
     } catch (error) {
@@ -78,10 +77,8 @@ export default class BotService {
       } else {
         const commandKey = action.replace('/', '').split(' ')[0];
         if (commandList[commandKey]) {
-          console.log('Processing command listed:', action)
           await commandList[commandKey](chatId, bot, action)
         } else {
-          console.log('Processing command:', action)
           await bot.sendMessage(chatId, `Entering to the else block with command ${action}`)
         }
       }
@@ -116,7 +113,6 @@ export default class BotService {
   public async sendVideo(video: string, chatId: string, bot: TelegramBot) {
     try {
       const videoPath = getVideoPath(`${video}.${videoFormat}`)
-      console.log('videoPath:', videoPath)
       await bot
         .sendVideo(chatId, fs.createReadStream(videoPath), {})
         .catch((err) => {

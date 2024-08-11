@@ -36,7 +36,6 @@ export default class NFTService {
         data
       )
       const cid = await ipfsService.uploadIPFs(ipfsBody)
-      console.log('cid is:', cid);
       const provider = new ethers.JsonRpcProvider(rpc)
       const signer = new ethers.Wallet(pk, provider)
       const nftContract = OWL__factory.connect(contractAddress, signer)
@@ -118,8 +117,6 @@ export default class NFTService {
         }
       })
       if (eventProcessLogs && eventProcessLogs.length > 0) {
-        console.log('eventProcessLogs:', txHash);
-        console.log('eventProcessLogs:',  BigInt(eventProcessLogs[0].data).toString());
         const response : NftMintResponse = {
           txHash: txHash,
           tokenId: BigInt(eventProcessLogs[0].data).toString()
