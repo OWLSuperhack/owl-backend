@@ -31,16 +31,11 @@ export default class Web3Service {
             await bot.sendMessage(
               chatId, 
               `¡Genial! Tu marca de vida ha sido sellada:
-              \n
               \n Has recibido una medalla digital que marca el comienzo de tu viaje en este nuevo universo.  🎖
-              \n
               \n Puedes admirarla aquí: \n${config.nft.openSeaUrl}${creationResonse.nft.tokenId}
-              \n
               \n 💡 Esta medalla o insignia, conocida como NFT, es más que un simple trofeo: es una huella permanente en una tecnología llamada blockchain.
-              \n
               \n Explora tu huella digital aquí: \n${config.nft.blockScout}${creationResonse.nft.txHash}
-              \n
-              \n ✨ Ahora, usa /start para comenzar a jugar`
+              \n Ahora, usa /start para comenzar a jugar`
             )
           } else {
             bot.sendMessage(
