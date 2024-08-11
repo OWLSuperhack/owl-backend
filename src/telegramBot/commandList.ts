@@ -139,7 +139,7 @@ exports.answer = async function (chatId: string, bot: TelegramBot, msg: Telegram
         }
         const parts = msg.text?.split(' ')
         const answer = parts?.slice(1).join(' ')
-        console.log("answer", answer)
+
         if (!answer) {
           bot.sendMessage(chatId, "Debes ingresar una respuesta")
           return
@@ -172,9 +172,8 @@ exports.resultMuseum = async function (chatId: string, bot: TelegramBot, msg: Te
           return
         }
         const decisions = await userService.getAllUserAnswers(chatId);
-        console.log("decisions", decisions)
         const decisionsMuseum = decisions.rows.filter((decision) => decision.dataValues.locationName === 'Museum');
-        console.log("decisionsMuseum", decisionsMuseum)
+
         for await (const decision of decisionsMuseum) {
           const message = await activityService.getAnwswerEnglish(decision.dataValues.selection);
           if (message) {
