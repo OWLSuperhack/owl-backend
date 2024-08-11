@@ -90,19 +90,12 @@ One of OWL’s unique features is that the main storyline remains flexible, unaf
 
 # Demo
 
-<!-- INSERTAR DEMO AQUÍ
+[![Demo Video](https://i.ibb.co/B6RGzjm/fdsfsd.jpg)](https://youtu.be/nxBdHEU0fN0)
 
-
-[![Demo Video](https://i.ibb.co/48PGvQk/Pocket-Youtube-Final.png)](https://www.youtube.com/watch?v=74cyIjHnwyc)
-
- -->
- 
 Ready to explore? Chat with OWL Bot: https://t.me/OwlSuperHackBot
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p> 
 
-
-<!-- GETTING STARTED   -->
 
 
 # How it Works
